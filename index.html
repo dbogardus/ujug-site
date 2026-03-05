@@ -38,7 +38,7 @@
     /* Navigation links */
     .nav-links {
       text-align: center;
-      padding: 20px;
+      padding: 40px 20px 20px;
       display: flex;
       justify-content: center;
       gap: 20px;
@@ -135,9 +135,16 @@
       opacity: 1;
       filter: invert(1) brightness(2.5);
     }
+    .sponsor-row img.color-hover {
+      filter: invert(1) brightness(1.5);
+    }
+    .sponsor-row img.color-hover:hover {
+      opacity: 1;
+      filter: invert(1) brightness(2.5);
+    }
     .sponsor-row.tier-diamond img { height: 240px; }
     .sponsor-row.tier-gold img { height: 90px; }
-    .sponsor-row.tier-silver img { height: 70px; }
+    .sponsor-row.tier-silver img { height: 105px; }
 
     /* Responsive */
     @media (max-width: 900px) {
@@ -183,7 +190,7 @@
       <a href="https://stgconsulting.com/" target="_blank"><img src="sponsors/STG_Logo_Blue.png" alt="Software Technology Group" class="dark-hover"></a>
     </div>
     <div class="sponsor-row tier-silver" style="margin-top: 70px">
-      <a href="https://www.octanner.com/solutions/technology" target="_blank"><img src="sponsors/O.C._Tanner_Company_Logo.png" alt="O.C. Tanner"></a>
+      <a href="https://www.octanner.com/solutions/technology" target="_blank"><img src="sponsors/O.C._Tanner_Company_Logo.png" alt="O.C. Tanner" class="color-hover"></a>
     </div>
   </div>
 
