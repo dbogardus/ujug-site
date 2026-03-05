@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UJUG - Utah Java Users Group</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #2d2d2d;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Logo header */
+    .logo-section {
+      text-align: center;
+      padding: 70px 20px 10px;
+    }
+    .logo-section svg {
+      width: 700px;
+      height: auto;
+      fill: rgb(90, 185, 79);
+    }
+    .tagline {
+      color: #aaa;
+      font-size: 1.1em;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Navigation links */
+    .nav-links {
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: rgb(90, 185, 79);
+      text-decoration: none;
+      font-size: 1em;
+      padding: 8px 20px;
+      border: 1px solid rgb(90, 185, 79);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .nav-links a:hover {
+      background-color: rgba(90, 185, 79, 0.15);
+    }
+
+    /* Photo grid */
+    .photo-grid {
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 20px;
+      columns: 3;
+      column-gap: 16px;
+    }
+    .photo-grid img {
+      width: 100%;
+      display: block;
+      margin-bottom: 16px;
+      border-radius: 6px;
+      opacity: 0;
+      transform: translateY(30px) rotate(var(--rotate));
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .photo-grid img.visible {
+      opacity: 1;
+      transform: translateY(0) rotate(var(--rotate));
+    }
+    .photo-grid img:hover {
+      transform: scale(1.03) rotate(0deg);
+      box-shadow: 0 8px 30px rgba(90, 185, 79, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #888;
+      font-size: 0.9em;
+      border-top: 1px solid #444;
+      margin-top: 40px;
+    }
+    .footer a {
+      color: rgb(90, 185, 79);
+      text-decoration: none;
+    }
+
+    /* Sponsors */
+    .sponsors {
+      text-align: center;
+      padding: 80px 20px 10px;
+    }
+    .sponsors h2 {
+      color: #888;
+      font-size: 0.9em;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .sponsor-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      margin-bottom: 25px;
+    }
+    .sponsor-row img {
+      width: auto;
+      opacity: 0.7;
+      filter: grayscale(100%) brightness(1.8);
+      transition: all 0.3s ease;
+    }
+    .sponsor-row img:hover {
+      opacity: 1;
+      filter: grayscale(0%) brightness(1);
+    }
+    .sponsor-row img.dark-hover {
+      filter: invert(1) brightness(1.5);
+    }
+    .sponsor-row img.dark-hover:hover {
+      opacity: 1;
+      filter: invert(1) brightness(2.5);
+    }
+    .sponsor-row.tier-diamond img { height: 240px; }
+    .sponsor-row.tier-gold img { height: 90px; }
+    .sponsor-row.tier-silver img { height: 70px; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .photo-grid {
+        columns: 2;
+      }
+    }
+    @media (max-width: 500px) {
+      .photo-grid {
+        columns: 1;
+      }
+      .logo-section svg {
+        width: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-section">
+    <svg viewBox="100 330 420 130" xmlns="http://www.w3.org/2000/svg">
+      <path d="M210.6,412l-8.3-8.3v-56c0-1.9-1.5-3.4-3.4-3.4h-11.9c-1.9,0-3.4,1.5-3.4,3.4v42.9h0l0,0c0,4.8-3.9,8.7-8.7,8.7h-45.1v0l0,0c-4.8,0-8.7-3.9-8.7-8.7v-42.9c0-1.9-1.5-3.4-3.4-3.4h-11.9c-1.9,0-3.4,1.5-3.4,3.4v42.9c0,15.1,12.3,27.4,27.4,27.4h0h60.5l7.1,7.1c1.3,1.3,3.5,1.3,4.8,0l8.4-8.4C211.9,415.5,211.9,413.3,210.6,412z"/>
+      <path d="M399.6,412l-8.3-8.3v-56c0-1.9-1.5-3.4-3.4-3.4h-11.9c-1.9,0-3.4,1.5-3.4,3.4v42.9h0l0,0c0,4.8-3.9,8.7-8.7,8.7h-45.1v0l0,0c-4.8,0-8.7-3.9-8.7-8.7v-42.9c0-1.9-1.5-3.4-3.4-3.4h-11.9c-1.9,0-3.4,1.5-3.4,3.4v42.9c0,15.1,12.3,27.4,27.4,27.4h0h60.5l7.1,7.1c1.3,1.3,3.5,1.3,4.8,0l8.4-8.4C400.9,415.5,400.9,413.3,399.6,412z"/>
+      <path d="M271.4,344.4h-51.6c-1.9,0-3.4,1.5-3.4,3.4v11.9c0,1.9,1.5,3.4,3.4,3.4h27.7v0l0,0c4.8,0,8.7,3.9,8.7,8.7v58.7h0l0,0c0,4.8-3.9,8.7-8.7,8.7h-58.1c-1.9,0-3.4,1.5-3.4,3.4v11.9c0,1.9,1.5,3.4,3.4,3.4h52.8l5.3,0v0c15.1,0,27.4-12.3,27.4-27.4v0h0v-82.7C274.8,345.9,273.2,344.4,271.4,344.4z"/>
+      <path d="M508.2,344.8l-8.4-8.4c-1.3-1.3-3.5-1.3-4.8,0l-8,8l-51.7,0c-15.1,0-27.4,12.3-27.4,27.4v0v18.9c0,15.1,12.3,27.4,27.4,27.4h0v0l27.7,0c1.9,0,3.4-1.5,3.4-3.4v-11.9c0-1.9-1.5-3.4-3.4-3.4h-27.7v0l0,0c-4.8,0-8.7-3.9-8.7-8.7v-18.9h0l0,0c0-4.8,3.9-8.7,8.7-8.7h37.5v0l0,0c4.8,0,8.7,3.9,8.7,8.7v58.7h0l0,0c0,4.8-3.9,8.7-8.7,8.7h-5.1l-41.2,0c-1.9,0-3.4,1.5-3.4,3.4v11.9c0,1.9,1.5,3.4,3.4,3.4h46.5v0c15-0.1,27.2-12.3,27.2-27.4v0v0v-72.9l8-8C509.5,348.3,509.5,346.1,508.2,344.8z"/>
+    </svg>
+    <div class="tagline">UJUG is a non-profit serving the Utah technology community since 1999</div>
+  </div>
+
+  <nav class="nav-links">
+    <a href="https://www.meetup.com/utah-java-users-group/events/" target="_blank">Schedule</a>
+    <a href="/sponsorship-info">Sponsorship</a>
+
+  </nav>
+
+  <div class="sponsors">
+    <h2>Our Sponsors</h2>
+    <div class="sponsor-row tier-diamond">
+      <a href="https://www.teksystems.com/" target="_blank"><img src="sponsors/tek-systems-logo.png" alt="TEKsystems" class="dark-hover"></a>
+    </div>
+    <div class="sponsor-row tier-gold">
+      <a href="https://lucid.co/" target="_blank"><img src="sponsors/LucidLogo1.png" alt="Lucid Software" class="dark-hover"></a>
+      <a href="https://stgconsulting.com/" target="_blank"><img src="sponsors/STG_Logo_Blue.png" alt="Software Technology Group"></a>
+    </div>
+    <div class="sponsor-row tier-silver" style="margin-top: 70px">
+      <a href="https://www.octanner.com/solutions/technology" target="_blank"><img src="sponsors/O.C._Tanner_Company_Logo.png" alt="O.C. Tanner"></a>
+    </div>
+  </div>
+
+  <div class="photo-grid">
+    <img src="photos/IMG_9311.jpeg" alt="UJUG meeting" style="--rotate: -1.5deg">
+    <img src="photos/IMG_0291.jpeg" alt="Speaker presenting on AI" style="--rotate: 1deg">
+    <img src="photos/IMG_9188.jpg" alt="Decline and Fall of Microservices talk" style="--rotate: -0.5deg">
+    <img src="photos/IMG_0287.jpeg" alt="Speaker presenting to crowd" style="--rotate: 1.5deg">
+    <img src="photos/IMG_1875.jpeg" alt="Mastering Software Architecture" style="--rotate: -1deg">
+    <img src="photos/IMG_2281.jpeg" alt="Members with O'Reilly book" style="--rotate: 0.5deg">
+    <img src="photos/IMG_9183.jpeg" alt="Speaker with mountains backdrop" style="--rotate: -1.5deg">
+    <img src="photos/IMG_0806.jpeg" alt="Speaker at podium with code" style="--rotate: 1deg">
+    <img src="photos/IMG_6992.jpg" alt="Hardware is Real talk" style="--rotate: -0.5deg">
+    <img src="photos/IMG_9332.jpeg" alt="Speaker with UJUG logo" style="--rotate: 1.5deg">
+    <img src="photos/IMG_2383.jpeg" alt="Speaker at podium" style="--rotate: -1deg">
+  </div>
+
+  <div class="footer">
+    <p>&copy; UJUG &mdash; Utah Java Users Group</p>
+    <p style="margin-top: 8px"><span id="footer-email"></span></p>
+  </div>
+
+  <script>
+    // Fade in photos as they scroll into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.photo-grid img').forEach(img => {
+      observer.observe(img);
+    });
+
+    // Assemble email to avoid scrapers
+    (function() {
+      var u = 'contact';
+      var d = 'ujug';
+      var t = 'org';
+      var addr = u + '@' + d + '.' + t;
+      var cl = document.getElementById('contact-link');
+      var fe = document.getElementById('footer-email');
+      if (cl) { cl.textContent = addr; }
+      if (fe) { fe.textContent = addr; }
+    })();
+  </script>
+</body>
+</html>
